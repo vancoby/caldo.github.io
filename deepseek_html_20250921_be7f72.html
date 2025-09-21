@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caldo da Dona Ana - O Melhor Caldo da Região</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --marrom: #8B4513;
+            --laranja: #FF8C00;
+            --bege: #F5DEB3;
+            --branco: #ffffff;
+            --cinza-claro: #f8f9fa;
+            --cinza-escuro: #343a40;
+        }
+        
+        body {
+            background-color: var(--bege);
+            color: var(--cinza-escuro);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Elementos de fundo animados simplificados */
+        .floating-element {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(139, 69, 19, 0.1);
+            z-index: -1;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 5%;
+            animation-delay: 2s;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 15%;
+            left: 10%;
+            animation-delay: 4s;
+            width: 100px;
+            height: 100px;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        header {
+            background-color: var(--marrom);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        section {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: var(--marrom);
+            border-bottom: 2px solid var(--laranja);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+        
+        h2 i {
+            margin-right: 12px;
+            color: var(--laranja);
+        }
+        
+        .produto {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .produto:last-child {
+            border-bottom: none;
+        }
+        
+        .produto-info {
+            margin-bottom: 10px;
+        }
+        
+        .produto-nome {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--marrom);
+        }
+        
+        .produto-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .produto-controles {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .produto-preco {
+            font-weight: bold;
+            color: var(--laranja);
+            font-size: 1.1rem;
+        }
+        
+        .produto-quantidade {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantidade-btn {
+            background: var(--marrom);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quantidade {
+            margin: 0 12px;
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .contato-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .btn {
+            background: var(--marrom);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: var(--laranja);
+            transform: translateY(-2px);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #128C7E;
+        }
+        
+        .resumo-pedido {
+            background-color: var(--cinza-claro);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid var(--laranja);
+        }
+        
+        .total {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-top: 15px;
+            color: var(--marrom);
+            text-align: right;
+        }
+        
+        #taxa-entrega {
+            text-align: right;
+            margin-top: 5px;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .mapa {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mapa iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        footer {
+            background-color: var(--marrom);
+            color: white;
+            padding: 25px 0;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--laranja);
+            transform: translateY(-3px);
+        }
+        
+        /* Melhorias para mobile */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                margin: 0 auto;
+            }
+            
+            .produto {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .produto-info {
+                flex: 2;
+                margin-bottom: 0;
+            }
+            
+            .produto-controles {
+                flex: 1;
+                justify-content: flex-end;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .floating-element {
+                display: none; /* Esconder elementos flutuantes em mobile para melhor performance */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Elementos de fundo animados simplificados -->
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    
+    <header>
+        <div class="logo">Caldo da Dona Ana</div>
+        <div class="tagline">O melhor caldo da região!</div>
+    </header>
+    
+    <div class="container">
+        <section id="cardapio">
+            <h2><i class="fas fa-utensils"></i> Cardápio</h2>
+            
+            <div class="produto" data-nome="Caldo de Carne" data-preco="5" data-tamanho="250ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Caldo de Carne - 250ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 5,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="produto" data-nome="Caldo de Carne" data-preco="10" data-tamanho="500ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Caldo de Carne - 500ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 10,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="produto" data-nome="Caldo de Carne" data-preco="15" data-tamanho="700ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Caldo de Carne - 700ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 15,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Caldo de Frango -->
+            <div class="produto" data-nome="Caldo de Frango" data-preco="5" data-tamanho="250ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Caldo de Frango - 250ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 5,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="produto" data-nome="Caldo de Frango" data-preco="10" data-tamanho="500ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Caldo de Frango - 500ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 10,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="produto" data-nome="Caldo de Frango" data-preco="15" data-tamanho="700ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Caldo de Frango - 700ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 15,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mocotó -->
+            <div class="produto" data-nome="Mocotó" data-preco="5" data-tamanho="250ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Mocotó - 250ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 5,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="produto" data-nome="Mocotó" data-preco="10" data-tamanho="500ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Mocotó - 500ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 10,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="produto" data-nome="Mocotó" data-preco="15" data-tamanho="700ml">
+                <div class="produto-info">
+                    <div class="produto-nome">Mocotó - 700ml</div>
+                    <div class="produto-desc">Acompanha torrada</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 15,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Creme de Galinha -->
+            <div class="produto" data-nome="Creme de Galinha" data-preco="15" data-tamanho="">
+                <div class="produto-info">
+                    <div class="produto-nome">Creme de Galinha</div>
+                    <div class="produto-desc">Acompanha batata palha</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 15,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sucos -->
+            <div class="produto" data-nome="Suco/Refresco" data-preco="4" data-tamanho="">
+                <div class="produto-info">
+                    <div class="produto-nome">Sucos e Refrescos</div>
+                    <div class="produto-desc">A partir de</div>
+                </div>
+                <div class="produto-controles">
+                    <div class="produto-preco">R$ 4,00</div>
+                    <div class="produto-quantidade">
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(this)">-</button>
+                        <span class="quantidade">0</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(this)">+</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="resumo">
+            <h2><i class="fas fa-shopping-cart"></i> Resumo do Pedido</h2>
+            <div class="resumo-pedido">
+                <p>Itens selecionados:</p>
+                <ul id="itens-pedido">
+                    <li>Nenhum item selecionado</li>
+                </ul>
+                <div class="total">Total: R$ <span id="total-pedido">0,00</span></div>
+                <div id="taxa-entrega">Taxa de entrega: Grátis para pedidos acima de R$ 15,00</div>
+            </div>
+            
+            <button class="btn btn-whatsapp" onclick="enviarPedido()" style="margin-top: 20px; width: 100%;">
+                <i class="fab fa-whatsapp"></i> Enviar Pedido via WhatsApp
+            </button>
+        </section>
+        
+        <section id="contato">
+            <h2><i class="fas fa-phone-alt"></i> Contato</h2>
+            <div class="contato-info">
+                <p>Faça seu pedido pelo WhatsApp:</p>
+                <a href="https://wa.me/559884270588" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            </div>
+        </section>
+        
+        <section id="localizacao">
+            <h2><i class="fas fa-map-marker-alt"></i> Localização</h2>
+            <p>Venha nos visitar ou peça delivery!</p>
+            <div class="mapa">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.588441997875!2d-42.8728239250184!3d-5.038922950999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92c8df3c6b76d865:0x70242f3294a6e15e!2sR.%20Buritirana,%20725,%20Bom%20Jesus%20das%20Selvas%20-%20MA,%2065395-000!5e0!3m2!1spt-BR!2sbr!4v1684966140843!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <a href="https://maps.app.goo.gl/v2FctuoMAkDSc3eg9" class="btn" target="_blank" style="margin-top: 15px;">
+                <i class="fas fa-directions"></i> Abrir no Google Maps
+            </a>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://wa.me/559884270588" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p>Caldo da Dona Ana &copy; 2023 - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Funções para controlar a quantidade
+        function aumentarQuantidade(btn) {
+            const quantidadeElement = btn.parentElement.querySelector('.quantidade');
+            let quantidade = parseInt(quantidadeElement.textContent);
+            quantidade++;
+            quantidadeElement.textContent = quantidade;
+            atualizarResumo();
+        }
+        
+        function diminuirQuantidade(btn) {
+            const quantidadeElement = btn.parentElement.querySelector('.quantidade');
+            let quantidade = parseInt(quantidadeElement.textContent);
+            if (quantidade > 0) {
+                quantidade--;
+                quantidadeElement.textContent = quantidade;
+                atualizarResumo();
+            }
+        }
+        
+        // Atualizar o resumo do pedido
+        function atualizarResumo() {
+            const produtos = document.querySelectorAll('.produto');
+            let itens = [];
+            let total = 0;
+            
+            produtos.forEach(produto => {
+                const quantidade = parseInt(produto.querySelector('.quantidade').textContent);
+                if (quantidade > 0) {
+                    const nome = produto.dataset.nome;
+                    const preco = parseFloat(produto.dataset.preco);
+                    const tamanho = produto.dataset.tamanho;
+                    
+                    const itemTotal = preco * quantidade;
+                    total += itemTotal;
+                    
+                    itens.push({
+                        nome,
+                        tamanho,
+                        quantidade,
+                        preco,
+                        itemTotal
+                    });
+                }
+            });
+            
+            // Atualizar a lista de itens
+            const itensLista = document.getElementById('itens-pedido');
+            itensLista.innerHTML = '';
+            
+            if (itens.length === 0) {
+                itensLista.innerHTML = '<li>Nenhum item selecionado</li>';
+            } else {
+                itens.forEach(item => {
+                    const li = document.createElement('li');
+                    let texto = `${item.quantidade}x ${item.nome}`;
+                    if (item.tamanho) texto += ` (${item.tamanho})`;
+                    texto += ` - R$ ${item.itemTotal.toFixed(2)}`;
+                    li.textContent = texto;
+                    itensLista.appendChild(li);
+                });
+            }
+            
+            // Calcular taxa de entrega
+            let taxaEntrega = 0;
+            if (total > 0 && total < 15) {
+                taxaEntrega = 2;
+            }
+            
+            // Atualizar totais
+            const totalComTaxa = total + taxaEntrega;
+            document.getElementById('total-pedido').textContent = totalComTaxa.toFixed(2);
+            
+            // Atualizar informação da taxa de entrega
+            const taxaElement = document.getElementById('taxa-entrega');
+            if (taxaEntrega > 0) {
+                taxaElement.textContent = `Taxa de entrega: R$ ${taxaEntrega.toFixed(2)}`;
+            } else if (total === 0) {
+                taxaElement.textContent = 'Taxa de entrega: Grátis para pedidos acima de R$ 15,00';
+            } else {
+                taxaElement.textContent = 'Taxa de entrega: Grátis';
+            }
+        }
+        
+        // Enviar pedido via WhatsApp
+        function enviarPedido() {
+            const produtos = document.querySelectorAll('.produto');
+            let itens = [];
+            let total = 0;
+            
+            produtos.forEach(produto => {
+                const quantidade = parseInt(produto.querySelector('.quantidade').textContent);
+                if (quantidade > 0) {
+                    const nome = produto.dataset.nome;
+                    const preco = parseFloat(produto.dataset.preco);
+                    const tamanho = produto.dataset.tamanho;
+                    
+                    const itemTotal = preco * quantidade;
+                    total += itemTotal;
+                    
+                    itens.push({
+                        nome,
+                        tamanho,
+                        quantidade,
+                        preco,
+                        itemTotal
+                    });
+                }
+            });
+            
+            if (itens.length === 0) {
+                alert('Por favor, adicione itens ao pedido antes de enviar.');
+                return;
+            }
+            
+            // Calcular taxa de entrega
+            let taxaEntrega = 0;
+            if (total > 0 && total < 15) {
+                taxaEntrega = 2;
+            }
+            
+            const totalComTaxa = total + taxaEntrega;
+            
+            // Montar mensagem para WhatsApp
+            let mensagem = "Olá, gostaria de fazer um pedido:\n\n";
+            
+            itens.forEach(item => {
+                let linha = `• ${item.quantidade}x ${item.nome}`;
+                if (item.tamanho) linha += ` (${item.tamanho})`;
+                linha += ` - R$ ${item.itemTotal.toFixed(2)}\n`;
+                mensagem += linha;
+            });
+            
+            mensagem += `\nSubtotal: R$ ${total.toFixed(2)}`;
+            if (taxaEntrega > 0) {
+                mensagem += `\nTaxa de entrega: R$ ${taxaEntrega.toFixed(2)}`;
+            } else {
+                mensagem += "\nTaxa de entrega: Grátis";
+            }
+            mensagem += `\n*Total: R$ ${totalComTaxa.toFixed(2)}*`;
+            
+            mensagem += "\n\nObrigado!";
+            
+            // Codificar a mensagem para URL
+            const mensagemCodificada = encodeURIComponent(mensagem);
+            
+            // Abrir WhatsApp
+            window.open(`https://wa.me/559884270588?text=${mensagemCodificada}`, '_blank');
+        }
+    </script>
+</body>
+</html>
